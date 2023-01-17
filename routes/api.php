@@ -1,6 +1,7 @@
 <?php
 
     use App\Http\Controllers\AuthController;
+    use App\Http\Controllers\BooksStoreController;
     use App\Http\Controllers\StoreController;
     use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -17,5 +18,13 @@ Route::middleware(['apiJwt'])->group(static function () {
         Route::post('/', 'store')->name('store.store');
         Route::put('/{identify}', 'update')->name('store.update');
         Route::delete('/{identify}', 'destroy')->name('store.delete');
+    });
+
+    Route::controller(BooksStoreController::class)->prefix('books/{identifyStore}')->group(function() {
+        Route::get('/', 'index')->name('book.index');
+        Route::get('/{identify}', 'show')->name('book.show');
+        Route::post('/', 'store')->name('book.store');
+        Route::put('/{identify}', 'update')->name('book.update');
+        Route::delete('/{identify}', 'destroy')->name('book.delete');
     });
 });
