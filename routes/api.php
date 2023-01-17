@@ -11,6 +11,7 @@ Route::post('/auth/register', [AuthController::class, 'register'])->name('regist
 
 Route::middleware(['apiJwt'])->group(static function () {
     Route::get('/auth/logout', [AuthController::class, 'logout'])->name('logout');
+    Route::get('/me', [AuthController::class, 'me'])->name('me');
 
     Route::controller(StoreController::class)->prefix('stores')->group(function() {
         Route::get('/', 'index')->name('store.index');
