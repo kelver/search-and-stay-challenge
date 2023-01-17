@@ -4,13 +4,13 @@
 
     use Closure;
     use Illuminate\Http\Request;
-    use Illuminate\Routing\Controllers\Middleware;
     use Symfony\Component\HttpFoundation\Response;
     use Tymon\JWTAuth\Exceptions\TokenExpiredException;
     use Tymon\JWTAuth\Exceptions\TokenInvalidException;
     use Tymon\JWTAuth\Facades\JWTAuth;
+    use Tymon\JWTAuth\Http\Middleware\BaseMiddleware;
 
-    class ApiProtectedRoute extends Middleware
+    class ApiProtectedRoute extends BaseMiddleware
     {
         /**
          * Handle an incoming request.
