@@ -21,7 +21,10 @@ class StoreRepository
 
     public function findStore(string $identify)
     {
-        $store = $this->model->where(['user_id' => auth()->id(), 'uuid' => $identify]);
+        $store = $this->model->where([
+            'user_id' => auth()->id(),
+            'uuid' => $identify
+        ])->first();
 
         if(!$store) {
             abort(Response::HTTP_NOT_FOUND, 'Store not found');

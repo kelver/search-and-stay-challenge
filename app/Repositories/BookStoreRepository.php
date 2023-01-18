@@ -17,7 +17,7 @@ class BookStoreRepository
 
     protected function findIdStoreByUuid(string $identifyStore): int
     {
-        $store = Store::where('uuid', $identifyStore)->first();
+        $store = Store::where(['user_id' => auth()->id(), 'uuid' => $identifyStore])->first();
 
         if(!$store) {
             abort(Response::HTTP_NOT_FOUND, 'Store not found');
@@ -39,7 +39,7 @@ class BookStoreRepository
             'user_id' => auth()->id(),
             'uuid' => $identify,
             'store_id' => $this->findIdStoreByUuid($identifyStore)
-        ]);
+        ])->first();
 
         if(!$book) {
             abort(Response::HTTP_NOT_FOUND, 'Book not found');

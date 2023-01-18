@@ -18,7 +18,7 @@ Route::middleware(['apiJwt'])->group(static function () {
         Route::get('/{identify}', 'show')->name('store.show');
         Route::post('/', 'store')->name('store.store');
         Route::put('/{identify}', 'update')->name('store.update');
-        Route::delete('/{identify}', 'destroy')->name('store.delete');
+        Route::delete('/{identify}', 'delete')->name('store.delete');
     });
 
     Route::controller(BooksStoreController::class)->prefix('books/{identifyStore}')->group(function() {

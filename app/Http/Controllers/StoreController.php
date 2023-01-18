@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreRequest;
 use App\Http\Resources\StoreResource;
 use App\Services\StoreService;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -25,7 +26,7 @@ class StoreController extends Controller
     public function store(StoreRequest $request)
     {
         $this->service->store($request->all());
-        return response()->json([], Response::HTTP_NO_CONTENT);
+        return response()->json([], Response::HTTP_CREATED);
     }
 
     public function show(string $identify)
@@ -39,7 +40,7 @@ class StoreController extends Controller
         return response()->json([], Response::HTTP_NO_CONTENT);
     }
 
-    public function destroy(string $identify)
+    public function delete(string $identify): JsonResponse
     {
         $this->service->destroy($identify);
         return response()->json([], Response::HTTP_NO_CONTENT);

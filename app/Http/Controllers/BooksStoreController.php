@@ -26,7 +26,7 @@
         public function store(BookStoreRequest $request, string $identifyStore): JsonResponse
         {
             $this->service->store($request->all(), $identifyStore);
-            return response()->json([], Response::HTTP_NO_CONTENT);
+            return response()->json([], Response::HTTP_CREATED);
         }
 
         public function show(string $identifyStore, string $identify): BookStoreResource
